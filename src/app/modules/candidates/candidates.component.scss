@@ -1,0 +1,59 @@
+.candidates-container {
+
+  .candidates-card {
+
+    background-color: #efefef;
+    border-radius: 6px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 60px;
+    min-height: 300px;
+    max-height: 300px;
+    overflow: hidden;
+    transition: .5;
+    width: 200px;
+
+    &:hover {
+      div {
+        margin-bottom: -10px;
+        transform: scaleY(1);
+        transition: .5s;
+      }
+    }
+
+    .candidates-card-header {
+
+      background: linear-gradient(360deg, rgb(222 82 38 / 85%) -30%, rgb(255 222 109) 70%, rgb(250 210 41) 103%);
+      transform: rotate(-15deg);
+      box-sizing: border-box;
+      position: relative;
+      left: -32px;
+      top: -28px;
+      height: 145px;
+      width: 240px;
+
+    }
+
+    .candidates-card-profile {
+
+      display: flex;
+      justify-content: center;
+
+      img {
+
+        background-color: white;
+        border-radius: 50%;
+        box-shadow: 3px 3px 20px rgb(0 0 0 / 50%);
+        border: 2px solid rgba(255, 255, 255, 1);
+        position: relative;
+        top: -70px;
+        width: 80px;
+        height: 80px;
+
+      }
+
+    }
+
+  }
+
+}
