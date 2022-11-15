@@ -8,6 +8,7 @@ import { CandidatesService } from 'src/app/services/candidates.service';
 })
 export class CandidatesComponent implements OnInit {
 
+  isLoading: boolean = false
   allCandidates: any
    = [
     { id: 1, name: 'Larissa Emanuela', age: 32, weight: 55.5, profileBase64: '1', passportStatus: 'notValid', status: true },
@@ -43,6 +44,12 @@ export class CandidatesComponent implements OnInit {
       console.log(err)
 
     })
+
+  }
+
+  openDialogNewCandidate() {
+
+    this.isLoading = true
 
   }
 

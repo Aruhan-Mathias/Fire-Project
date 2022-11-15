@@ -1,0 +1,15 @@
+<button
+    [ngClass]="{
+      'loading': loading
+    }"
+  >
+
+  <span *ngIf="!loading">{{ title }}</span>
+
+  <span *ngIf="loading" class="mat-spinner-content">
+
+    <mat-spinner strokeWidth="6" diameter="15"></mat-spinner>
+
+  </span>
+
+</button>

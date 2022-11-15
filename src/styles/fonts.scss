@@ -1,17 +1,26 @@
-.page-title {
+.page-header {
 
-  color: #444953;
-  margin: 10px 0 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-}
+  .page-title {
 
-.page-description {
+    color: #444953;
+    margin: 10px 0 0 10px;
+    font-weight: 500;
 
-  color: #80858F;
-  font-size: .9rem;
-  font-weight: 400;
-  letter-spacing: -0.3px;
-  line-height: 1rem;
-  margin: 10px 0 0 10px;
+  }
+
+  .page-description {
+
+    color: #80858F;
+    font-size: .9rem;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    line-height: 1rem;
+    margin: 10px 0 0 10px;
+
+  }
 
 }
