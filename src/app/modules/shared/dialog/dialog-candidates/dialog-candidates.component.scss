@@ -1,0 +1,61 @@
+.dialog-candidates-container {
+
+  section {
+
+    padding: 20px;
+
+  }
+
+  .divisor {
+
+    border: 1px solid #F2F2F2;
+    margin-bottom: 1rem;
+
+  }
+
+  .dialog-candidate-content {
+
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 625px;
+
+    mat-form-field {
+
+      margin-right: 30px;
+
+      &.age {
+
+        width: 80px;
+
+      }
+
+      &.weight {
+
+        width: 110px;
+
+      }
+
+      &.height {
+
+        width: 110px;
+
+      }
+
+      &.w-50 {
+
+        width: calc(50% - 30px);
+
+      }
+
+      &.w-full {
+
+        width: 100%;
+
+      }
+
+    }
+
+  }
+
+}

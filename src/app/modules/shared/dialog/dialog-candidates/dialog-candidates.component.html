@@ -1,1 +1,89 @@
-<p>dialog-candidates works!</p>
+<div class="dialog-candidates-container">
+
+  <section>
+
+    <h1>Novo Candidato</h1>
+
+  </section>
+
+  <mat-tab-group (selectedIndexChange)="selectedIndex" [(selectedIndex)]="selectedIndex" (fitInkBarToContent)="true">
+
+    <!-- Content 01 (Dados Pessoais) -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
+        Dados Pessoais *
+      </ng-template>
+
+      <form class="dialog-candidate-content">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Nome Completo</mat-label>
+          <input type="text" matInput placeholder="Nome do Candidato">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="age">
+          <mat-label>Idade</mat-label>
+          <input type="text" maxlength="2" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="weight">
+          <mat-label>Peso (KG)</mat-label>
+          <input type="text" maxlength="3" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="height">
+          <mat-label>Altura</mat-label>
+          <input type="text" maxlength="3" matInput>
+        </mat-form-field>
+
+        <mat-form-field (click)="filterAfterClick()" appearance="fill" class="w-50">
+          <mat-label>Estado que reside</mat-label>
+          <input type="text"
+                 matInput
+                 [formControl]="myControl"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-50">
+          <mat-label>Validade do Passaporte</mat-label>
+          <input type="date" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Perfil do Instagram (link)</mat-label>
+          <input type="text" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Perfil do Facebook (link)</mat-label>
+          <input type="text" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Número para contato com DDD</mat-label>
+          <input type="text" matInput>
+        </mat-form-field>
+
+      </form>
+
+      <button (click)="selectedIndex = 1">Próximo</button>
+
+    </mat-tab>
+
+    <mat-tab #tab02 updateActiveLink="event($event)">
+      <ng-template mat-tab-label>
+        <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
+        Galeria
+      </ng-template>
+      Content 2
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>

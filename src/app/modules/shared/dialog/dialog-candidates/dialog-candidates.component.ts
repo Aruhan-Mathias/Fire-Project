@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { map, Observable, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-dialog-candidates',
@@ -7,9 +9,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogCandidatesComponent implements OnInit {
 
-  constructor() { }
+  selectedIndex: number = 0;
+  myControl = new FormControl(null);
+  filteredOptions: Observable<string[]> | undefined;
+  states: string[] = [
+    'AC - Acre',
+    'AL - Alagoas',
+    'AP - Amapá',
+    'AM - Amazonas',
+    'BA - Bahia',
+    'CE - Ceará',
+    'DF - Distrito Federal',
+    'ES - Espírito Santo',
+    'GO - Goías',
+    'MA - Maranhão',
+    'MT - Mato Grosso',
+    'MS - Mato Grosso do Sul',
+    'MG - Minas Gerais',
+    'PA - Pará',
+    'PB - Paraíba',
+    'PR - Paraná',
+    'PE - Pernambuco',
+    'PI - Piauí',
+    'RJ - Rio de Janeiro',
+    'RN - Rio Grande do Norte',
+    'RS - Rio Grande do Sul',
+    'RO - Rondônia',
+    'RR - Roraíma',
+    'SC - Santa Catarina',
+    'SP - São Paulo',
+    'SE - Sergipe',
+    'TO - Tocantins'
+  ]
 
-  ngOnInit(): void {
+  ngOnInit() { }
+
+  filterAfterClick() {
+
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+
+  }
+
+  private _filter(value: string): string[] {
+
+    const filterValue = value.toLowerCase()
+
+    return this.states.filter(state => state.toLowerCase().includes(filterValue))
+
+  }
+
+  event(event: any) {
+    console.log(event)
+    this.selectedIndex = 0
   }
 
 }

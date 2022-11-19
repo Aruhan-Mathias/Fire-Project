@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { CandidatesService } from 'src/app/services/candidates.service';
+import { DialogService } from 'src/app/services/dialog.service';
+import { DialogCandidatesComponent } from '../shared/dialog/dialog-candidates/dialog-candidates.component';
 
 @Component({
   selector: 'app-candidates',
@@ -24,7 +27,8 @@ export class CandidatesComponent implements OnInit {
   ]
 
   constructor(
-    private candidatesService: CandidatesService
+    private candidatesService: CandidatesService,
+    private dialogService: DialogService,
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +53,9 @@ export class CandidatesComponent implements OnInit {
 
   openDialogNewCandidate() {
 
-    this.isLoading = true
+    this.dialogService.openDialogCandidate().subscribe((result: any) => {
+      console.log(result)
+    })
 
   }
 

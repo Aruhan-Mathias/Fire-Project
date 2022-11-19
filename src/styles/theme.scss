@@ -260,3 +260,11 @@ $altTheme: (
     font-family: 'Roboto';
   }
 }
+
+.mat-dialog-container {
+  padding: 0 !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: transparent !important;
+}
