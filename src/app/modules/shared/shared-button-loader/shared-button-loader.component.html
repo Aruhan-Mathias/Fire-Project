@@ -1,7 +1,9 @@
 <button mat-button
     [ngClass]="{
-      'loading': loading
+      'loading': loading,
+      'disabled': disabled
     }"
+    [disabled]="disabled"
   >
 
   <span *ngIf="!loading">{{ title }}</span>

@@ -5,10 +5,11 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './shared-button-loader.component.html',
   styleUrls: ['./shared-button-loader.component.scss']
 })
-export class ButtonComponent implements OnInit {
+export class SharedButtonLoaderComponent implements OnInit {
 
   @Input() title: string = ''
   @Input() loading: boolean = false
+  @Input() disabled: boolean = false;
 
   constructor() { }
 

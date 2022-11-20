@@ -8,6 +8,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { DialogCandidatesComponent } from './dialog-candidates/dialog-candidates.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedButtonLoaderModule } from '../shared-button-loader/shared-button-loader.module';
+
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -21,6 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatTabsModule,
+    NgxMaskModule,
+    SharedButtonLoaderModule
   ],
   exports: [
     MatInputModule

@@ -24,21 +24,33 @@
 
       margin-right: 30px;
 
+      &.name {
+
+        width: 75%;
+
+      }
+
       &.age {
 
-        width: 80px;
+        width: calc(25% - 60px);
+
+      }
+
+      &.contactNumber {
+
+        width: calc(40% - 30px);
 
       }
 
       &.weight {
 
-        width: 110px;
+        width: 145px;
 
       }
 
       &.height {
 
-        width: 110px;
+        width: 170px;
 
       }
 
@@ -53,6 +65,23 @@
         width: 100%;
 
       }
+
+    }
+
+
+  }
+
+  .btn-next-content {
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px 20px 0;
+
+    .disabled {
+
+      cursor: not-allowed;
+      pointer-events: none;
 
     }
 
