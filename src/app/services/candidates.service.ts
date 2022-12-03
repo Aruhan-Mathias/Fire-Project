@@ -12,7 +12,7 @@ export class CandidatesService {
 
   getAllCandidates() {
 
-    return this.http.get(`${environment.apiUrl}/candidates`)
+    return this.http.get(`${environment.apiUrl}/collaborators`)
 
   }
 

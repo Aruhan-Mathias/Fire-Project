@@ -13,6 +13,12 @@
 
   }
 
+  .w-full {
+
+    width: 100%;
+
+  }
+
   .dialog-candidate-content {
 
     padding: 20px;
@@ -57,12 +63,6 @@
       &.w-50 {
 
         width: calc(50% - 30px);
-
-      }
-
-      &.w-full {
-
-        width: 100%;
 
       }
 

@@ -69,31 +69,32 @@
           </mat-autocomplete>
         </mat-form-field>
 
-        <mat-form-field appearance="fill" class="w-50">
+        <mat-form-field appearance="fill" class="w-50" formGroupName="passport">
           <mat-label>Validade do Passaporte</mat-label>
-          <input formControlName="datePassport" type="date" [min]="currentDate | date: 'yyyy-MM-dd'"  matInput>
-          <mat-error *ngIf="candidateForm.get('datePassport').hasError('required')">Preencha a Validade do Passaporte.</mat-error>
+          <input formControlName="expirationDate" type="date" [min]="currentDate | date: 'yyyy-MM-dd'"  matInput>
+          <!-- <mat-error *ngIf="candidateForm.controls.passport.get('expirationDate').hasError('required')">Preencha a Validade do Passaporte.</mat-error> -->
         </mat-form-field>
 
-        <mat-form-field appearance="fill" class="w-full">
-          <mat-label>Perfil do Instagram (link)</mat-label>
-          <input formControlName="instagramLink" type="text" matInput>
-          <mat-error *ngIf="candidateForm.get('instagramLink').hasError('required')">Preencha o campo Instagram.</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="w-full">
-          <mat-label>Perfil do Facebook (link)</mat-label>
-          <input formControlName="facebookLink" type="text" matInput>
-          <mat-error *ngIf="candidateForm.get('facebookLink').hasError('required')">Preencha o campo Facebook.</mat-error>
-        </mat-form-field>
+        <div formGroupName="social" class="w-ful">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Perfil do Instagram (@)</mat-label>
+            <input formControlName="instagram" type="text" matInput>
+            <!-- <mat-error *ngIf="candidateForm.controls.social.get('instagram').hasError('required')">Preencha o campo Instagram.</mat-error> -->
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Perfil do Facebook (@)</mat-label>
+            <input formControlName="facebook" type="text" matInput>
+            <!-- <mat-error *ngIf="candidateForm.controls.social.get('facebook').hasError('required')">Preencha o campo Facebook.</mat-error> -->
+          </mat-form-field>
+        </div>
 
       </form>
 
       <div class="btn-next-content">
 
+        <!-- TODO: add after integration [ngClass]="{ 'disabled': !candidateForm.valid }" -->
         <app-shared-button
-          [ngClass]="{ 'disabled': !candidateForm.valid }"
-          [title]="'Salvar e Avançar'" [disabled]="!candidateForm.valid" (click)="saveAndContinue()">
+          [title]="'Salvar e Avançar'" (click)="saveAndContinue()">
         </app-shared-button>
 
       </div>

@@ -20,11 +20,11 @@
       <p class="visible-to-client">
         Status:
 
-        <span *ngIf="candidate.status">
+        <span *ngIf="candidate.showToCustomer">
           Visível
         </span>
 
-        <span *ngIf="!candidate.status">
+        <span *ngIf="!candidate.showToCustomer">
           Não Visível
         </span>
 
@@ -51,12 +51,12 @@
 
         <!-- TODO: add conditional and ngClass (valid or not-valid) -->
         <p class="passport"
-        [ngClass]="{ 'valid' : candidate.passportStatus === 'valid',
-        'not-valid' : candidate.passportStatus === 'notValid' }">
+        [ngClass]="{ 'valid' : candidate.passport.isValid,
+        'not-valid' : !candidate.passport.isValid }">
           Passaporte:
 
-          <span *ngIf="candidate.passportStatus === 'valid'" >Válido</span>
-          <span *ngIf="candidate.passportStatus === 'notValid'">Inválido</span>
+          <span *ngIf="candidate.passport.isValid" >Válido</span>
+          <span *ngIf="!candidate.passport.isValid">Inválido</span>
 
         </p>
 

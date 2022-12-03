@@ -63,9 +63,18 @@ export class DialogCandidatesComponent implements OnInit {
       weight: ['', [Validators.required, Validators.max(150)]],
       height: ['', [Validators.required, Validators.min(140), Validators.max(200)]],
       state: ['', Validators.required],
-      datePassport: ['', Validators.required],
-      instagramLink: ['', Validators.required],
-      facebookLink: ['', Validators.required],
+      modality: this.fb.array([]),
+      passport: this.fb.group({
+        expirationDate: '',
+        isValid: false
+      }),
+      showToCustomer: false,
+      social: this.fb.group({
+        facebook: '',
+        instagram: ''
+      }),
+      traveled: '',
+      favorite: false,
       contactNumber: ['', [Validators.required, Validators.minLength(11)]]
     })
 
@@ -91,6 +100,7 @@ export class DialogCandidatesComponent implements OnInit {
   saveAndContinue(): void {
 
     this.selectedIndex = 1
+    console.log(this.candidateForm.value)
 
   }
 
