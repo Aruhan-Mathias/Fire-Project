@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { CandidatesService } from 'src/app/services/candidates.service';
 import { DialogService } from 'src/app/services/dialog.service';
-import { DialogCandidatesComponent } from '../shared/dialog/dialog-candidates/dialog-candidates.component';
 
 @Component({
   selector: 'app-candidates',
@@ -12,50 +11,68 @@ import { DialogCandidatesComponent } from '../shared/dialog/dialog-candidates/di
 export class CandidatesComponent implements OnInit {
 
   isLoading: boolean = false
-  allCandidates: any
-   = [
-    { id: 1, name: 'Larissa Emanuela', age: 32, weight: 55.5, profileBase64: '1', passport:{ expirationDate: '', isValid: true }, showToCustomer: true },
-    { id: 2, name: 'Jorge Cardoso', age: 44, weight: 55.5, profileBase64: '', passport:{ expirationDate: '', isValid: false }, showToCustomer: false },
-    { id: 3, name: 'Adriano Candeas', age: 22, weight: 55.5, profileBase64: '1', passport:{ expirationDate: '', isValid: false }, showToCustomer: true },
-    { id: 4, name: 'Mariana Fernandes', age: 19, weight: 55.5, profileBase64: '', passport:{ expirationDate: '', isValid: true }, showToCustomer: false },
-    { id: 5, name: 'Geogia Maria da Silva Lourder', age: 20, weight: 55.5, profileBase64: '1', passport:{ expirationDate: '', isValid: false }, showToCustomer: true },
-    { id: 6, name: 'Larissa Emanuela', age: 32, weight: 55.5, profileBase64: '1', passport:{ expirationDate: '', isValid: true }, showToCustomer: true },
-    { id: 7, name: 'Jorge Cardoso', age: 44, weight: 55.5, profileBase64: '', passport:{ expirationDate: '', isValid: true }, showToCustomer: false },
-    { id: 8, name: 'Adriano Candeas', age: 22, weight: 55.5, profileBase64: '1', passport:{ expirationDate: '', isValid: false }, showToCustomer: true },
-    { id: 9, name: 'Mariana Fernandes', age: 19, weight: 55.5, profileBase64: '', passport:{ expirationDate: '', isValid: false }, showToCustomer: true },
-    { id: 10, name: 'Geogia Maria da Silva Lourder', age: 20, weight: 55.5, profileBase64: '1', passport:{ expirationDate: '', isValid: true }, showToCustomer: true },
-  ]
+  allCandidates: any = []
 
   constructor(
     private candidatesService: CandidatesService,
     private dialogService: DialogService,
+    private route: Router,
   ) { }
 
   ngOnInit(): void {
 
-    // this.getCandidates()
+    this.getCandidates()
 
   }
 
   getCandidates() {
 
-    this.allCandidates = this.candidatesService.getAllCandidates().subscribe((result) => {
-
-      console.log(result)
-
-    }, err => {
-
-      console.log(err)
-
+    this.candidatesService.getAllCandidates().subscribe((result: any) => {
+      this.allCandidates = result.data
     })
 
   }
 
   openDialogNewCandidate() {
 
-    this.dialogService.openDialogCandidate().subscribe((result: any) => {
-      console.log(result)
+    this.dialogService.openDialogCandidate().subscribe(() => {
+      this.getCandidates()
     })
+
+  }
+
+  openDeleteDialog(candidateId: string) {
+
+    this.dialogService.openDialogDelete().subscribe((result: any) => {
+
+      if(result) {
+
+        this.deleteCandidate(candidateId)
+
+      }
+
+    })
+
+  }
+
+  deleteCandidate(id: string) {
+
+    this.candidatesService.deleteCandidate(id).subscribe((response: any) => {
+
+      this.allCandidates = this.allCandidates.filter((candidate: any) => candidate.id !== id)
+
+    }, (error: any) => {
+
+      // TODO: add bad message snackbar
+      console.log(error, 'error ocurrent here')
+
+    })
+
+  }
+
+  navigateToDetails(candidateId: string) {
+
+    this.route.navigate([`candidates/${candidateId}`])
 
   }
 

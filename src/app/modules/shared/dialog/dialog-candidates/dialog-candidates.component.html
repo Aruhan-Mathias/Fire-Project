@@ -106,7 +106,9 @@
         <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
         Galeria de Fotos
       </ng-template>
-      Content 2
+
+      <input type="file" name="selected_files" (change)="uploadFile($event)" multiple>
+
     </mat-tab>
 
   </mat-tab-group>

@@ -1,6 +1,9 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
+import { CandidatesService } from 'src/app/services/candidates.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dialog-candidates',
@@ -14,6 +17,7 @@ export class DialogCandidatesComponent implements OnInit {
   selectedIndex: number = 0
   myControl = new FormControl(null)
   filteredOptions: Observable<string[]> | undefined
+  candidateId: string = ''
   states: string[] = [
     'AC - Acre',
     'AL - Alagoas',
@@ -45,13 +49,14 @@ export class DialogCandidatesComponent implements OnInit {
   ]
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private candidatesServices: CandidatesService
   ) { }
 
   ngOnInit() {
 
     this.createCandidateForm()
-    console.log(this.currentDate)
 
   }
 
@@ -75,6 +80,7 @@ export class DialogCandidatesComponent implements OnInit {
       }),
       traveled: '',
       favorite: false,
+      profileImage: '',
       contactNumber: ['', [Validators.required, Validators.minLength(11)]]
     })
 
@@ -97,10 +103,55 @@ export class DialogCandidatesComponent implements OnInit {
 
   }
 
+  uploadFile(event: any) {
+
+    let file = event.target.files[0]
+    let formData = new FormData
+    formData.append('selected_files', file)
+
+    this.candidatesServices.uploadFiles(this.candidateId, formData).subscribe()
+
+  }
+
   saveAndContinue(): void {
 
-    this.selectedIndex = 1
-    console.log(this.candidateForm.value)
+    // if(!this.candidateForm.valid) {
+    //   return this.candidateForm.markAllTouched()
+    // }
+
+    let body = {
+      "name": "marcelo.pucca@itlean.com.br",
+      "age": 33,
+      "weight": 33,
+      "height": "190",
+      "state": "AL - Alagoas",
+      "modality": null,
+      "passport": {
+        "expirationDate": "2022-12-21",
+        "isValid": false
+      },
+      "showToCustomer": false,
+      "social": {
+        "facebook": "facebook instagram",
+        "instagram": "sdfsdfsd"
+      },
+      "traveled": "",
+      "favorite": false,
+      "profileImage": "",
+      "contactNumber": "12312312312"
+    }
+
+    this.candidatesServices.createCandidate(body).subscribe((result: any) => {
+
+      this.candidateId = result.id
+      this.selectedIndex = 1
+
+    }, error => {
+
+      console.log(error, 'error ocurrent here')
+
+    })
+
 
   }
 

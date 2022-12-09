@@ -12,7 +12,25 @@ export class CandidatesService {
 
   getAllCandidates() {
 
-    return this.http.get(`${environment.apiUrl}/collaborators`)
+    return this.http.get(`${environment.apiUrl}/api/collaborators`)
+
+  }
+
+  createCandidate(formValue: any) {
+
+    return this.http.post(`${environment.apiUrl}/api/collaborator/create`, formValue)
+
+  }
+
+  deleteCandidate(id: string) {
+
+    return this.http.delete(`${environment.apiUrl}/api/collaborator/delete/${id}`)
+
+  }
+
+  uploadFiles(id: string, formData: any) {
+
+    return this.http.post(`${environment.apiUrl}/api/file/upload/0aa8e2fd-d2be-4854-b0c2-0336afe81f40`, formData)
 
   }
 

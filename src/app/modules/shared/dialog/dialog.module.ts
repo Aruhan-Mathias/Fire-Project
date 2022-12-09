@@ -11,11 +11,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedButtonLoaderModule } from '../shared-button-loader/shared-button-loader.module';
 
 import { NgxMaskModule } from 'ngx-mask';
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 
 
 @NgModule({
   declarations: [
-    DialogCandidatesComponent
+    DialogCandidatesComponent,
+    DialogDeleteComponent
   ],
   imports: [
     CommonModule,

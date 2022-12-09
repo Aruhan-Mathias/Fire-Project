@@ -11,13 +11,44 @@
 
       background-color: #efefef;
       border-radius: 6px;
-      cursor: pointer;
       margin: 30px;
       min-height: 315px;
       max-height: fit-content;
       overflow: hidden;
       padding: 20px 20px;
       width: 190px;
+
+      .delete-content {
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        svg {
+
+          background-color: rgba(193, 57, 56, 1);
+          cursor: pointer;
+          position: absolute;
+          margin: 4px -8px 0 0;
+          border-radius: 0 0 30px 30px;
+          padding: 10px 5px;
+          z-index: 1;
+
+          path {
+            color: FFFF;
+          }
+
+          &:hover {
+
+            background-color: #80858f2d;
+            border-radius: 40px;
+            transition: .5s;
+
+          }
+
+        }
+
+      }
 
       .visible-to-client {
 
@@ -125,6 +156,20 @@
           align-items: center;
           justify-content: space-around;
           margin-top: 20px;
+
+        }
+
+        .btn-details {
+
+          border-radius: 15px;
+          border: 1px solid #5c5c5c63;
+          color: #5c5c5c;
+          cursor: pointer;
+          text-transform: capitalize;
+          font-weight: 400;
+          padding: 7px 0;
+          margin: 5px 0;
+          width: 100%;
 
         }
 
