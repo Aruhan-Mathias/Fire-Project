@@ -92,22 +92,49 @@
 
       <div class="btn-next-content">
 
-        <!-- TODO: add after integration [ngClass]="{ 'disabled': !candidateForm.valid }" -->
         <app-shared-button
-          [title]="'Salvar e Avançar'" (click)="saveAndContinue()">
+          [title]="'Salvar e Avançar'" (click)="saveAndContinue()"
+          [loading]="isLoading"
+          [ngClass]="{'disabled' : !candidateForm.valid}"
+          [disabled]="!candidateForm.valid"
+          >
         </app-shared-button>
 
       </div>
 
     </mat-tab>
 
-    <mat-tab #tab02 updateActiveLink="event($event)" [disabled]="!candidateForm.valid">
+    <mat-tab
+      #tab02
+      updateActiveLink="event($event)"
+      [disabled]="!candidateForm.valid"
+      >
       <ng-template mat-tab-label>
         <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
         Galeria de Fotos
       </ng-template>
 
-      <input type="file" name="selected_files" (change)="uploadFile($event)" multiple>
+      <div
+        class="drop-container"
+        (change)="uploadFile($event)"
+        (dragenter)="dropzoneHovered = true" (dragleave)="dropzoneHovered = false"
+        [ngClass]="{'hover': dropzoneHovered}"
+        >
+
+        <div>
+
+          <p>Arraste sua imagem/vídeo</p>
+          <section class="or">
+            <span class="divisor"></span>
+            <span>ou</span>
+            <span class="divisor"></span>
+          </section>
+          <label for="input-file">Escolher Arquivo</label>
+          <input type="file" accept=".png, .jpeg, .jpg, .mp4" name="selected_files" id="input-file" (change)="uploadFile($event)" multiple>
+
+        </div>
+
+      </div>
 
     </mat-tab>
 

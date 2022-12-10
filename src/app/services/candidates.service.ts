@@ -28,6 +28,12 @@ export class CandidatesService {
 
   }
 
+  updateColaborator(id: string, formValue: any) {
+
+    return this.http.patch(`${environment.apiUrl}/api/collaborator/${id}`, formValue)
+
+  }
+
   uploadFiles(id: string, formData: any) {
 
     return this.http.post(`${environment.apiUrl}/api/file/upload/0aa8e2fd-d2be-4854-b0c2-0336afe81f40`, formData)

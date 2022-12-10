@@ -14,6 +14,8 @@ export class DialogCandidatesComponent implements OnInit {
 
   candidateForm: any
   currentDate: any = Date.now()
+  dropzoneHovered: boolean = false
+  isLoading: boolean = false
   selectedIndex: number = 0
   myControl = new FormControl(null)
   filteredOptions: Observable<string[]> | undefined
@@ -51,7 +53,7 @@ export class DialogCandidatesComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private candidatesServices: CandidatesService
+    private candidatesService: CandidatesService
   ) { }
 
   ngOnInit() {
@@ -103,55 +105,77 @@ export class DialogCandidatesComponent implements OnInit {
 
   }
 
+
+
+
+  patchToSetProfileImage(id: string, candidateFormValue: any) {
+
+    this.candidatesService.updateColaborator(id, candidateFormValue).subscribe({
+      next: (response) => {
+
+        this.isLoading = false
+        // TODO: add snackbar success message
+
+      }, error: (err) => {
+
+        console.log(err, 'error ocurrent here')
+
+      }
+    })
+
+  }
+
+
+
   uploadFile(event: any) {
 
+    this.isLoading = true
     let file = event.target.files[0]
     let formData = new FormData
     formData.append('selected_files', file)
 
-    this.candidatesServices.uploadFiles(this.candidateId, formData).subscribe()
+    this.candidatesService.uploadFiles(this.candidateId, formData).subscribe({
+      next: (response: any) => {
+
+        let candidateId = response.data.fileUrl.split('/')[1]
+        let newData = { profileImage: this.candidateForm.value.profileImage }
+        this.patchToSetProfileImage(candidateId, newData)
+
+      },
+      error: (err) => {
+
+        this.isLoading = false
+        // TODO: add snackbar success message
+
+      },
+    })
 
   }
 
   saveAndContinue(): void {
 
-    // if(!this.candidateForm.valid) {
-    //   return this.candidateForm.markAllTouched()
-    // }
-
-    let body = {
-      "name": "marcelo.pucca@itlean.com.br",
-      "age": 33,
-      "weight": 33,
-      "height": "190",
-      "state": "AL - Alagoas",
-      "modality": null,
-      "passport": {
-        "expirationDate": "2022-12-21",
-        "isValid": false
-      },
-      "showToCustomer": false,
-      "social": {
-        "facebook": "facebook instagram",
-        "instagram": "sdfsdfsd"
-      },
-      "traveled": "",
-      "favorite": false,
-      "profileImage": "",
-      "contactNumber": "12312312312"
+    if(!this.candidateForm.valid) {
+      console.log('oi')
+      return this.candidateForm.markAllAsTouched()
     }
 
-    this.candidatesServices.createCandidate(body).subscribe((result: any) => {
+    this.isLoading = true
+    this.candidatesService.createCandidate(this.candidateForm.value).subscribe({
 
-      this.candidateId = result.id
-      this.selectedIndex = 1
+      next: (response: any) => {
 
-    }, error => {
+        this.isLoading = false
+        this.candidateId = response.id
+        this.selectedIndex = 1
 
-      console.log(error, 'error ocurrent here')
+      },
+      error: (err) => {
+
+        console.log(err)
+
+      },
 
     })
-
 
   }
 
