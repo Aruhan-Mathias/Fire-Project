@@ -16,6 +16,12 @@ export class CandidatesService {
 
   }
 
+  getCandidateById(id: string) {
+
+    return this.http.get(`${environment.apiUrl}/api/collaborator/${id}`)
+
+  }
+
   createCandidate(formValue: any) {
 
     return this.http.post(`${environment.apiUrl}/api/collaborator/create`, formValue)

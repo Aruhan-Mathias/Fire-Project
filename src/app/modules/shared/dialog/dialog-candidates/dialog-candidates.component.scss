@@ -13,80 +13,6 @@
 
   }
 
-  .w-full {
-
-    width: 100%;
-
-  }
-
-  .dialog-candidate-content {
-
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 625px;
-
-    mat-form-field {
-
-      margin-right: 30px;
-
-      &.name {
-
-        width: 75%;
-
-      }
-
-      &.age {
-
-        width: calc(25% - 60px);
-
-      }
-
-      &.contactNumber {
-
-        width: calc(40% - 30px);
-
-      }
-
-      &.weight {
-
-        width: 145px;
-
-      }
-
-      &.height {
-
-        width: 170px;
-
-      }
-
-      &.w-50 {
-
-        width: calc(50% - 30px);
-
-      }
-
-    }
-
-
-  }
-
-  .btn-next-content {
-
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0 20px 20px 0;
-
-    .disabled {
-
-      cursor: not-allowed;
-      pointer-events: none;
-
-    }
-
-  }
-
   .drop-container {
 
     background-image: url(../../../../../assets/img/drop-image.png);
@@ -112,7 +38,7 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      top: 3.5rem;
+      top: 4.5rem;
       margin-top: 7rem;
 
       p {
@@ -157,6 +83,22 @@
         }
 
       }
+
+    }
+
+  }
+
+  .btn-content {
+
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0 50px 50px 0;
+
+    &.galery {
+
+      justify-content: space-between;
+      flex-direction: row;
+      padding: 0 50px 50px 50px;
 
     }
 

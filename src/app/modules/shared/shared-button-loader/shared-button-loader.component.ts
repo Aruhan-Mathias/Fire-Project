@@ -10,7 +10,7 @@ export class SharedButtonLoaderComponent implements OnInit {
   @Input() title: string = ''
   @Input() loading: boolean = false
   @Input() disabled: boolean = false
-  @Input() output: boolean = false
+  @Input() outline: boolean = false
 
   constructor() { }
 

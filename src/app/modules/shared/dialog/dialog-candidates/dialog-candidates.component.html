@@ -9,95 +9,62 @@
   <mat-tab-group (selectedIndexChange)="selectedIndex" [(selectedIndex)]="selectedIndex" (fitInkBarToContent)="true">
 
     <!-- Content 01 (Dados Pessoais) -->
-    <mat-tab>
+    <mat-tab [disabled]="candidateForm">
 
       <ng-template mat-tab-label>
         <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
         Dados Pessoais *
       </ng-template>
 
-      <form [formGroup]="candidateForm" class="dialog-candidate-content">
+      <app-form
+        formType="create"
+        (validForm)="formValid($event)"
+      >
+      </app-form>
 
-        <mat-form-field appearance="fill" class="name">
-          <mat-label>Nome Completo</mat-label>
-          <input formControlName="name" type="text" matInput placeholder="Nome do Candidato">
-          <mat-error *ngIf="candidateForm.get('name').hasError('required')">Preencha o Nome Completo.</mat-error>
-          <mat-error *ngIf="candidateForm.get('name').hasError('minlength')">Preencha o Nome <b>Completo</b> do Candiato.</mat-error>
-        </mat-form-field>
+    </mat-tab>
 
-        <mat-form-field appearance="fill" class="age">
-          <mat-label>Idade</mat-label>
-          <input formControlName="age" type="number" matInput>
-          <mat-error *ngIf="candidateForm.get('age').hasError('required')">Preencha a idade.</mat-error>
-          <mat-error *ngIf="candidateForm.get('age').hasError('min')">Idade mínima é 18 anos.</mat-error>
-          <mat-error *ngIf="candidateForm.get('age').hasError('max')">Idade máxima é 99 anos.</mat-error>
-        </mat-form-field>
+    <mat-tab
+      #tab02
+      updateActiveLink="event($event)"
+      [disabled]="!candidateForm"
+      >
+      <ng-template mat-tab-label>
+        <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
+        Foto de Perfil
+      </ng-template>
 
-        <mat-form-field appearance="fill" class="contactNumber">
-          <mat-label>Número para contato</mat-label>
-          <input formControlName="contactNumber" mask="(00) 00000-0000" type="text" matInput>
-          <mat-error *ngIf="candidateForm.get('contactNumber').hasError('required')">Preencha o campo Número</mat-error>
-          <mat-error *ngIf="candidateForm.get('contactNumber').hasError('minlength')">Preencha o campo Número <b>com DDD</b>.</mat-error>
-        </mat-form-field>
+      <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 
-        <mat-form-field appearance="fill" class="weight">
-          <mat-label>Peso (KG)</mat-label>
-          <input formControlName="weight" type="number" matInput>
-          <mat-error *ngIf="candidateForm.get('weight').hasError('required')">Preencha o Peso.</mat-error>
-          <mat-error *ngIf="candidateForm.get('weight').hasError('max')">Peso máximo é de 150 KG.</mat-error>
-        </mat-form-field>
+      <div
+        class="drop-container"
+        id="drop-container"
+        (drop)="uploadFile($event, true)"
+        (dragenter)="dropzoneHovered = true" (dragleave)="dropzoneHovered = false"
+        [ngClass]="{'hover': dropzoneHovered}"
+        >
 
-        <mat-form-field appearance="fill" class="height">
-          <mat-label>Altura</mat-label>
-          <input formControlName="height" mask="0.00" type="text" maxlength="4" matInput>
-          <mat-error *ngIf="candidateForm.get('height').hasError('required')">Preencha a Altura.</mat-error>
-          <mat-error *ngIf="candidateForm.get('height').hasError('min')">Altura mínima <b>1.40</b>.</mat-error>
-          <mat-error *ngIf="candidateForm.get('height').hasError('max')">Altura máxima <b>2.00</b>.</mat-error>
-        </mat-form-field>
+        <div>
 
-        <mat-form-field (click)="filterStates()" appearance="fill" class="w-50">
-          <mat-label>Estado que reside</mat-label>
-          <input type="text"
-            matInput
-            formControlName="state"
-            [matAutocomplete]="auto">
-          <mat-error *ngIf="candidateForm.get('state').hasError('required')">Preencha o Estado.</mat-error>
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
+          <p>Arraste a imagem de perfil</p>
+          <section class="or">
+            <span class="divisor"></span>
+            <span>ou</span>
+            <span class="divisor"></span>
+          </section>
+          <label for="input-file">Escolher Arquivo</label>
+          <input type="file" accept=".png, .jpeg, .jpg" name="selected_files" id="input-file" (change)="uploadFile($event, true)">
 
-        <mat-form-field appearance="fill" class="w-50" formGroupName="passport">
-          <mat-label>Validade do Passaporte</mat-label>
-          <input formControlName="expirationDate" type="date" [min]="currentDate | date: 'yyyy-MM-dd'"  matInput>
-          <!-- <mat-error *ngIf="candidateForm.controls.passport.get('expirationDate').hasError('required')">Preencha a Validade do Passaporte.</mat-error> -->
-        </mat-form-field>
-
-        <div formGroupName="social" class="w-ful">
-          <mat-form-field appearance="fill" class="w-full">
-            <mat-label>Perfil do Instagram (@)</mat-label>
-            <input formControlName="instagram" type="text" matInput>
-            <!-- <mat-error *ngIf="candidateForm.controls.social.get('instagram').hasError('required')">Preencha o campo Instagram.</mat-error> -->
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="w-full">
-            <mat-label>Perfil do Facebook (@)</mat-label>
-            <input formControlName="facebook" type="text" matInput>
-            <!-- <mat-error *ngIf="candidateForm.controls.social.get('facebook').hasError('required')">Preencha o campo Facebook.</mat-error> -->
-          </mat-form-field>
         </div>
 
-      </form>
+      </div>
 
-      <div class="btn-next-content">
+      <div class="btn-content">
 
         <app-shared-button
-          [title]="'Salvar e Avançar'" (click)="saveAndContinue()"
-          [loading]="isLoading"
-          [ngClass]="{'disabled' : !candidateForm.valid}"
-          [disabled]="!candidateForm.valid"
-          >
+          [title]="'Continuar'" (click)="selectedIndex = 2"
+          [outline]="true"
+        >
         </app-shared-button>
 
       </div>
@@ -107,7 +74,7 @@
     <mat-tab
       #tab02
       updateActiveLink="event($event)"
-      [disabled]="!candidateForm.valid"
+      [disabled]="!candidateForm"
       >
       <ng-template mat-tab-label>
         <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
@@ -118,23 +85,40 @@
 
       <div
         class="drop-container"
-        (change)="uploadFile($event)"
+        (drop)="uploadFile($event, false)"
         (dragenter)="dropzoneHovered = true" (dragleave)="dropzoneHovered = false"
         [ngClass]="{'hover': dropzoneHovered}"
         >
 
         <div>
 
-          <p>Arraste sua imagem/vídeo</p>
+          <p>Arraste a imagem/vídeo (png, jpeg, jpg, mp4)</p>
           <section class="or">
             <span class="divisor"></span>
             <span>ou</span>
             <span class="divisor"></span>
           </section>
           <label for="input-file">Escolher Arquivo</label>
-          <input type="file" accept=".png, .jpeg, .jpg, .mp4" name="selected_files" id="input-file" (change)="uploadFile($event)" multiple>
+          <input type="file" accept=".png, .jpeg, .jpg, .mp4" name="selected_files" id="input-file" (change)="uploadFile($event, false)">
 
         </div>
+
+      </div>
+
+      <div class="btn-content galery">
+
+        <app-shared-button
+          [title]="'Voltar'"
+          [outline]="true"
+          (click)="selectedIndex = 1"
+        >
+        </app-shared-button>
+
+        <app-shared-button
+          [title]="'Finalizar Cadastro'"
+          (click)="closeDialog()"
+        >
+        </app-shared-button>
 
       </div>
 

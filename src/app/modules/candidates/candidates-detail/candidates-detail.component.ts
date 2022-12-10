@@ -11,7 +11,10 @@ import { CandidatesService } from 'src/app/services/candidates.service';
 export class CandidatesDetailComponent implements OnInit {
 
   id: string = ''
-  inscricao: Subscription | any
+  isLoading: boolean = false
+  candidateForm: any = ''
+  inscription: Subscription | any
+  medias: any = []
 
   constructor(
     private route: ActivatedRoute,
@@ -20,8 +23,9 @@ export class CandidatesDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.inscricao = this.route.params.subscribe((param: any) => {
+    this.inscription = this.route.params.subscribe((param: any) => {
       this.id = param['id'];
+      this.isLoading = true
       this.getCandidateMedia(this.id)
     })
 
@@ -29,19 +33,40 @@ export class CandidatesDetailComponent implements OnInit {
 
   ngOnDestroy() {
 
-    this.inscricao.unsubscribe()
+    this.inscription.unsubscribe()
 
   }
 
   getCandidateMedia(id: string) {
 
     this.candidatesService.getMediasByCandidateId(id).subscribe({
-      next: (response) => {
+      next: (response: any) => {
 
-        console.log(response)
+        this.medias = response.files.map((media: any) => {
+          return {
+            url: `https://${media.fileUrl}`,
+            key: media.key
+          }
+        })
 
-      }
+        this.isLoading = false
+
+      },
+      error(err) {
+
+        console.log(err, 'error ocurrent here')
+
+      },
+
     })
+
+  }
+
+
+  getProfileImageURL(event: any) {
+
+    this.candidateForm = event
+    this.isLoading = false
 
   }
 
