@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
+
 import { CandidatesService } from 'src/app/services/candidates.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dialog-candidates',
@@ -137,9 +137,8 @@ export class DialogCandidatesComponent implements OnInit {
     this.candidatesService.uploadFiles(this.candidateId, formData).subscribe({
       next: (response: any) => {
 
-        let candidateId = response.data.fileUrl.split('/')[1]
-        let newData = { profileImage: this.candidateForm.value.profileImage }
-        this.patchToSetProfileImage(candidateId, newData)
+        let newData = { profileImage: `https://${response.data.fileUrl}` }
+        this.patchToSetProfileImage(this.candidateId, newData)
 
       },
       error: (err) => {
@@ -165,7 +164,7 @@ export class DialogCandidatesComponent implements OnInit {
       next: (response: any) => {
 
         this.isLoading = false
-        this.candidateId = response.id
+        this.candidateId = response.data.id
         this.selectedIndex = 1
 
       },

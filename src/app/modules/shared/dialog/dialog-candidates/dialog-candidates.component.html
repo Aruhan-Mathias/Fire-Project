@@ -114,6 +114,8 @@
         Galeria de Fotos
       </ng-template>
 
+      <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
       <div
         class="drop-container"
         (change)="uploadFile($event)"

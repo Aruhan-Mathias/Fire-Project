@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 import { DialogModule } from './dialog/dialog.module';
 
@@ -14,13 +15,14 @@ import { SharedButtonLoaderModule } from './shared-button-loader/shared-button-l
   declarations: [],
   imports: [
     CommonModule,
-    SharedButtonLoaderModule,
-    DialogModule,
     MatDialogModule,
+    MatSnackBarModule,
+    DialogModule,
+    SharedButtonLoaderModule,
   ],
   exports: [
-    SharedButtonLoaderModule,
     DialogModule,
+    SharedButtonLoaderModule,
   ],
   providers: [
     CandidatesService,

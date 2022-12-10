@@ -28,6 +28,12 @@ export class CandidatesService {
 
   }
 
+  getMediasByCandidateId(id: string) {
+
+    return this.http.get(`${environment.apiUrl}/api/file/${id}`)
+
+  }
+
   updateColaborator(id: string, formValue: any) {
 
     return this.http.patch(`${environment.apiUrl}/api/collaborator/${id}`, formValue)
@@ -36,7 +42,7 @@ export class CandidatesService {
 
   uploadFiles(id: string, formData: any) {
 
-    return this.http.post(`${environment.apiUrl}/api/file/upload/0aa8e2fd-d2be-4854-b0c2-0336afe81f40`, formData)
+    return this.http.post(`${environment.apiUrl}/api/file/upload/${id}`, formData)
 
   }
 

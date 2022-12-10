@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { DialogCandidatesComponent } from './dialog-candidates/dialog-candidates.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -24,6 +25,7 @@ import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
     MatInputModule,
     MatFormFieldModule,
     MatAutocompleteModule,
+    MatProgressBarModule,
     ReactiveFormsModule,
     MatTabsModule,
     NgxMaskModule,
