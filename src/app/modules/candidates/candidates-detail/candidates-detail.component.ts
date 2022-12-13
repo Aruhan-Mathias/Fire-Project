@@ -12,6 +12,7 @@ export class CandidatesDetailComponent implements OnInit {
 
   id: string = ''
   isLoading: boolean = false
+  profileImage: any
   candidateForm: any = ''
   inscription: Subscription | any
   medias: any = []
@@ -25,8 +26,6 @@ export class CandidatesDetailComponent implements OnInit {
 
     this.inscription = this.route.params.subscribe((param: any) => {
       this.id = param['id'];
-      this.isLoading = true
-      this.getCandidateMedia(this.id)
     })
 
   }
@@ -37,17 +36,15 @@ export class CandidatesDetailComponent implements OnInit {
 
   }
 
-  getCandidateMedia(id: string) {
+  getCandidateMedia(event: any) {
 
-    this.candidatesService.getMediasByCandidateId(id).subscribe({
+    this.candidateForm = event
+
+    this.candidatesService.getMediasByCandidateId(event.id).subscribe({
+
       next: (response: any) => {
 
-        this.medias = response.files.map((media: any) => {
-          return {
-            url: `https://${media.fileUrl}`,
-            key: media.key
-          }
-        })
+        this.medias = response.files.filter((media: any) => `https://${media.fileUrl}` !== this.candidateForm.profileImage)
 
         this.isLoading = false
 
@@ -59,14 +56,6 @@ export class CandidatesDetailComponent implements OnInit {
       },
 
     })
-
-  }
-
-
-  getProfileImageURL(event: any) {
-
-    this.candidateForm = event
-    this.isLoading = false
 
   }
 

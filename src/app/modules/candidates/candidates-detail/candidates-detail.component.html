@@ -14,14 +14,31 @@
         <app-form
             formType="update"
             [id]="id"
-            (validForm)="getProfileImageURL($event)"
+            (validForm)="getCandidateMedia($event)"
         >
         </app-form>
 
     </section>
 
-    <section *ngFor="let media of medias">
-        <!-- <img [src]="media.url" alt="Image"> -->
+    <section class="galery">
+
+      <div  *ngFor="let media of medias">
+
+        <!-- images -->
+        <img *ngIf="media.filesExtension !== '.mp4'" [src]="'https://' + media.fileUrl" alt="Image">
+
+        <!-- videos -->
+        <div *ngIf="media.filesExtension === '.mp4'" class="videos">
+
+            <video controls #videoPlayer>
+                <source [src]="'https://' + media.fileUrl" type="video/mp4" />
+                Browser not supported
+            </video>
+
+        </div>
+
+        </div>
+
     </section>
 
 </div>

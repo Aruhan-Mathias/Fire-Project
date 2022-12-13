@@ -104,22 +104,22 @@ export class FormComponent implements OnInit {
           height: response.data.height,
           state: response.data.state,
           // modality: this.fb.array([]),
-          passport: this.fb.group({
-            expirationDate: response.data.expirationDate,
+          passport: {
+            expirationDate: response.data.passport.expirationDate,
             // isValid: false
-          }),
+          },
           // showToCustomer: false,
-          social: this.fb.group({
+          social: {
             facebook: response.data.social.facebook,
             instagram: response.data.social.instagram
-          }),
+          },
           // traveled: response.data.name,
           // favorite: false,
           profileImage: response.data.profileImage,
           contactNumber: response.data.contactNumber,
         })
 
-        console.log(response.data)
+        console.log(this.candidateForm)
         this.validForm.emit(response.data) //return url profile image to show in details
 
       }
