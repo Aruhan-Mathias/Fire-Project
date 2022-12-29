@@ -57,6 +57,19 @@
       <!-- <mat-error *ngIf="candidateForm.controls.passport.get('expirationDate').hasError('required')">Preencha a Validade do Passaporte.</mat-error> -->
     </mat-form-field>
 
+    <ng-container appearance="fill" class="w-full" *ngFor="let modality of modalities">
+      <!-- <input formControlName="balletDancer" type="checkbox"> -->
+      <mat-checkbox formArrayName="modality" (change)="onClickCheckbox($event)" [value]="modality.value" [checked]="modality.checked" class="mat-checkboxes">
+        {{ modality.name }}
+      </mat-checkbox>
+      <!-- <mat-error *ngIf="candidateForm.controls.passport.get('expirationDate').hasError('required')">Preencha a Validade do Passaporte.</mat-error> -->
+    </ng-container>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Já viajou antes? Se sim, pra onde?</mat-label>
+      <input formControlName="traveled" type="text" matInput>
+    </mat-form-field>
+
     <div formGroupName="social" class="w-full">
       <mat-form-field appearance="fill" class="w-full">
         <mat-label>Perfil do Instagram (@)</mat-label>

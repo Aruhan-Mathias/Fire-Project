@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
 import { CandidatesService } from 'src/app/services/candidates.service';
 
@@ -47,6 +47,13 @@ export class FormComponent implements OnInit {
     'SP - São Paulo',
     'SE - Sergipe',
     'TO - Tocantins'
+  ]
+  modalities: Array<any> =[
+    {name: 'Acrobata', value: 'acrobata'},
+    {name: 'Bailarino(a)', value: 'bailarino'},
+    {name: 'Capoeira', value: 'capoeira'},
+    {name: 'Circence', value: 'circence'},
+    {name: 'Dançarino(a)', value: 'dancarino'},
   ]
 
   constructor(
@@ -103,7 +110,6 @@ export class FormComponent implements OnInit {
           weight: response.data.weight,
           height: response.data.height,
           state: response.data.state,
-          // modality: this.fb.array([]),
           passport: {
             expirationDate: response.data.passport.expirationDate,
             // isValid: false
@@ -113,18 +119,48 @@ export class FormComponent implements OnInit {
             facebook: response.data.social.facebook,
             instagram: response.data.social.instagram
           },
-          // traveled: response.data.name,
+          traveled: response.data.traveled,
           // favorite: false,
           profileImage: response.data.profileImage,
           contactNumber: response.data.contactNumber,
         })
 
-        console.log(this.candidateForm)
+          // modality: this.fb.array([]),
+          this.candidateForm.setControl('modality', this.fb.array(response.data.modality || []))
+          this.modalities.map((item: any) => {
+            console.log(item, 'item')
+
+            return this.candidateForm.value.modality.forEach((modality: any) => {
+              console.log(modality, 'modality')
+              if(modality === item.value) {
+                return item.checked = true
+              }else
+                return item
+            })
+          })
+
         this.validForm.emit(response.data) //return url profile image to show in details
 
       }
 
     })
+
+  }
+
+  onClickCheckbox(event: any) {
+
+    const modalityFormArray = (this.candidateForm.controls['modality'] as FormArray)
+
+    if(event.source.checked) {
+
+      modalityFormArray.push(this.fb.control(event.source.value))
+
+    } else {
+
+      let indexToRemove = modalityFormArray.controls.findIndex((item: any) => item.value === event.source.value)
+      modalityFormArray.removeAt(indexToRemove)
+
+    }
 
   }
 

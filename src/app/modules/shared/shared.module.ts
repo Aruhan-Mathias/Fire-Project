@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 
@@ -20,11 +21,13 @@ import { FormModule } from './form/form.module';
     MatSnackBarModule,
     DialogModule,
     FormModule,
+    MatProgressSpinnerModule,
     SharedButtonLoaderModule,
   ],
   exports: [
     FormModule,
     DialogModule,
+    MatProgressSpinnerModule,
     SharedButtonLoaderModule,
   ],
   providers: [

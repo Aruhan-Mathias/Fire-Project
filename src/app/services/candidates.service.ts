@@ -34,6 +34,12 @@ export class CandidatesService {
 
   }
 
+  deleteCandidateFiles(id: string) {
+
+    return this.http.delete(`${environment.apiUrl}/api/file/delete/${id}`)
+
+  }
+
   getMediasByCandidateId(id: string) {
 
     return this.http.get(`${environment.apiUrl}/api/file/${id}`)
