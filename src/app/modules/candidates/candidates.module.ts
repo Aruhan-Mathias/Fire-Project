@@ -7,6 +7,7 @@ import { CandidatesRoutingModule } from './candidates-routing.module';
 import { CandidatesComponent } from './candidates.component';
 import { CandidatesDetailComponent } from './candidates-detail/candidates-detail.component';
 import { SharedModule } from '../shared/shared.module';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     CandidatesRoutingModule,
     MatProgressBarModule,
+    NgxMaskModule,
     SharedModule
   ]
 })

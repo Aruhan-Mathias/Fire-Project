@@ -58,7 +58,7 @@
 
         <p>Idade: <span>{{ candidate.age }}</span> </p>
         <p>Peso: <span>{{ candidate.weight }} KG</span></p>
-        <p>Altura: <span>{{ candidate.height }} KG</span></p>
+        <p>Altura: <span>{{ candidate.height | mask: 'X.XX' }}</span></p>
 
         <!-- TODO: add conditional and ngClass (valid or not-valid) -->
         <!-- <p class="passport"
