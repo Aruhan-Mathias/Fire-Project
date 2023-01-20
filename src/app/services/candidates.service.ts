@@ -7,7 +7,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CandidatesService {
-  headers = { headers: {'Access-Control-Allow-Origin': 'ngrok-skip-browser-warning: true'} }
+
+  headers = { headers: {'ngrok-skip-browser-warning': 'true'} }
 
   constructor(
     private http: HttpClient
