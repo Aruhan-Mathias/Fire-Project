@@ -28,6 +28,7 @@
     align-items: center;
     width: 100%;
 
+    //TODO: mover tudo para uma media só de 900px
     @media(max-width: 900px) {
       flex-direction: column;
     }
@@ -48,6 +49,11 @@
         height: fit-content;
         width: 300px;
 
+        //TODO: mover tudo para uma media só de 900px
+        @media(max-width: 900px) {
+          margin-top: 65px;
+        }
+
       }
 
     }
@@ -58,11 +64,17 @@
 
     .card-container {
 
+      cursor: pointer;
       display: flex;
       flex-wrap: wrap;
       margin-left: 2rem;
       max-width: 100%;
       gap: 10px;
+
+      @media(max-width: 900px) {
+        justify-content: center;
+        align-items: center;
+      }
 
       .card {
 
@@ -79,20 +91,25 @@
         padding: 1.5rem;
         transition: 300ms ease-in-out;
 
-        &:hover:not(:last-child) {
+        @media(min-width: 900px) {
 
-          transform: rotate(-4deg);
+          &:hover:not(:last-child) {
 
-          & ~ .card {
-            z-index: 1;
-            translate: 60px
+            transform: rotate(-4deg);
+
+            & ~ .card {
+              z-index: 1;
+              translate: 60px
+            }
+
           }
 
         }
 
+
         & + .card {
 
-          margin-left: -10%;
+          margin-left: -5%;
 
         }
 

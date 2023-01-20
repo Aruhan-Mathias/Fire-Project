@@ -44,7 +44,7 @@
     <!-- images -->
     <div class="card-container">
 
-      <div *ngFor="let media of medias" class="card" (click)="openDialogImage('https://' + media.fileUrl)">
+      <div *ngFor="let media of medias" class="card" (click)="openDialogPreview('https://' + media.fileUrl)">
 
         <button (click)="openDeleteDialog(media.key, false)" title="Deletar" class="delete-content">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

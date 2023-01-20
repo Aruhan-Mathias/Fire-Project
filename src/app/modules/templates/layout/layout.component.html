@@ -4,6 +4,12 @@
 
     <div class="sidenav">
 
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <span class="material-symbols-outlined">
+          menu
+        </span>
+      </button>
+
       <button mat-button routerLink="/home">
         <span class="material-symbols-outlined">
           cottage
@@ -27,7 +33,7 @@
     <!-- TODO: change to new header-component -->
     <section class="header-container">
 
-      <button type="button" mat-button (click)="drawer.toggle()">
+      <button *ngIf="!drawer.opened" type="button" mat-button (click)="drawer.toggle()">
         <span class="material-symbols-outlined">
           menu
         </span>

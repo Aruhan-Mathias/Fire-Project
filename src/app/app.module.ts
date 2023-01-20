@@ -7,12 +7,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { NgxMaskModule } from 'ngx-mask'
+import { NgxMaskModule } from 'ngx-mask';
+import { DialogPreviewComponent } from './dialog-preview/dialog-preview.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    DialogPreviewComponent,
   ],
   imports: [
     CommonModule,

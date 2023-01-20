@@ -83,9 +83,9 @@ export class CandidatesDetailComponent implements OnInit {
   }
 
 
-  openDialogImage(url: string) {
+  openDialogPreview(imageUrl: string) {
 
-    
+    this.dialogService.openDialogPreview(imageUrl)
 
   }
 
