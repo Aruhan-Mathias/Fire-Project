@@ -18,6 +18,7 @@ export class CandidatesDetailComponent implements OnInit {
   candidateForm: any = ''
   inscription: Subscription | any
   medias: any = []
+  video: any = []
 
   constructor(
     private route: ActivatedRoute,
@@ -50,7 +51,8 @@ export class CandidatesDetailComponent implements OnInit {
       next: (response: any) => {
 
         //TODO: add snackbar
-        this.medias = response.files.filter((media: any) => `https://${media.fileUrl}` !== this.candidateForm.profileImage)
+        this.medias = response.files.filter((media: any) => `https://${media.fileUrl}` !== this.candidateForm.profileImage &&  media.filesExtension !== '.mp4')
+        this.video = response.files.filter((media: any) => media.filesExtension === '.mp4')
         this.isLoadingMedias = false
 
       },
@@ -77,6 +79,13 @@ export class CandidatesDetailComponent implements OnInit {
       }
 
     })
+
+  }
+
+
+  openDialogImage(url: string) {
+
+    
 
   }
 

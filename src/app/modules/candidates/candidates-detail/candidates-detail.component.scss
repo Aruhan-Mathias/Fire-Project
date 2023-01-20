@@ -50,49 +50,72 @@
 
   }
 
-  .card-container {
+  section {
 
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 2rem;
-    max-width: 100%;
-    gap: 10px;
+    .card-container {
 
-    .card {
-
-      background-color: rgb(255 255 255);
-      border-radius: 1rem;
-      box-shadow: -1rem 0 3rem 0rem #5252524a;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      min-width: 300px;
-      min-height: 350px;
-      padding: 1.5rem;
-      transition: 300ms ease-in-out;
+      flex-wrap: wrap;
+      margin-left: 2rem;
+      max-width: 100%;
+      gap: 10px;
 
-      &:hover:not(:last-child) {
+      .card {
 
-        transform: rotate(-4deg);
+        background-color: rgb(255 255 255);
+        border-radius: 1rem;
+        box-shadow: -1rem 0 3rem 0rem #5252524a;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        min-width: 300px;
+        min-height: 350px;
+        padding: 1.5rem;
+        transition: 300ms ease-in-out;
 
-        & ~ .card {
-          z-index: 1;
-          translate: 60px
+        &:hover:not(:last-child) {
+
+          transform: rotate(-4deg);
+
+          & ~ .card {
+            z-index: 1;
+            translate: 60px
+          }
+
+        }
+
+        & + .card {
+
+          margin-left: -10%;
+
+        }
+
+        img {
+
+          max-width: 300px;
+
         }
 
       }
 
-      & + .card {
+    }
 
-        margin-left: -10%;
+    .video-container {
+
+      margin-top: 2rem;
+
+      button {
+
+        float: right;
 
       }
 
-      img {
+      video {
 
-        max-width: 300px;
+        max-height: 540px;
+        width: 100%;
 
       }
 
