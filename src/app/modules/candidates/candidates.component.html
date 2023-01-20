@@ -58,6 +58,7 @@
 
         <p>Idade: <span>{{ candidate.age }}</span> </p>
         <p>Peso: <span>{{ candidate.weight }} KG</span></p>
+        <p>Altura: <span>{{ candidate.height }} KG</span></p>
 
         <!-- TODO: add conditional and ngClass (valid or not-valid) -->
         <!-- <p class="passport"
@@ -71,7 +72,8 @@
         </p> -->
 
         <!-- Social Networks -->
-        <div class="candidates-card-networks">
+        <!-- TODO: remove comment when remove API -->
+        <!-- <div class="candidates-card-networks">
 
           <a *ngIf="candidate.social.facebook" href="https://www.facebook.com/{{ candidate.social.facebook }}" target="_blank">
 
@@ -118,7 +120,7 @@
 
           </a>
 
-        </div>
+        </div> -->
 
         <button class="btn-details" (click)="navigateToDetails(candidate.id)">
           Ver mais

@@ -81,6 +81,7 @@ export class FormComponent implements OnInit {
       weight: ['', [Validators.required, Validators.max(150)]],
       height: ['', [Validators.required, Validators.min(140), Validators.max(200)]],
       state: ['', Validators.required],
+      contactNumber: ['', [Validators.minLength(11)]],
       modality: this.fb.array([]),
       passport: this.fb.group({
         expirationDate: '',
@@ -94,7 +95,6 @@ export class FormComponent implements OnInit {
       traveled: '',
       favorite: false,
       profileImage: '',
-      contactNumber: ['', [Validators.required, Validators.minLength(11)]]
     })
 
   }

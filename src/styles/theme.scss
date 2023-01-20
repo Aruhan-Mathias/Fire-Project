@@ -262,7 +262,19 @@ $altTheme: (
 }
 
 .mat-dialog-container {
+  box-sizing: border-box !important;
+  border-radius: 4px !important;
+  display: block !important;
+  max-height: 80vh !important;
   padding: 0 !important;
+  padding: 24px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  outline: 0 !important;
+  width: 100% !important;
+  .mat-tab-body-content {
+    overflow: hidden !important;
+  }
 }
 
 .mat-form-field-appearance-fill .mat-form-field-flex {
