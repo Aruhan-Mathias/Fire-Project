@@ -1,6 +1,6 @@
 # FrontInterno
 
-Projeto inicialmente criado para cadastrar dançarinos/bailarinos/capoeiristas para pré-seleção do cast para o cliente final.
+Projeto inicialmente criado para cadastrar pessoas que se enquadrem como dançarinos/bailarinos/capoeiristas para pré-seleção do elenco.
 
 ###### Angular CLI v14.0.1 - última vez testado com Node v18.13.0.
 # Antes de começar...
